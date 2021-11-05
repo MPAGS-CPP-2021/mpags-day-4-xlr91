@@ -57,31 +57,6 @@ void PlayfairCipher::setKey(const std::string& key){
                 duplicate), 
                 key_.end());
 
-
-    //store coord of each letter
-    //map is letter : x,y coordinate
-    //pair of 2 numbers make up the coordinate from the looks of it
-
-    
-    
-    
-    /*
-    using CoordPair = std::pair<int, int>;
-
-    CoordPair c0{1, 3};
-
-    using Let2CoordMap = std::map<char, std::pair<int, int>>;
-
-    letcoordmap.insert(std::make_pair('a', c0));
-
-    for (const auto& origChar : inputText)
-
-    std::string::iterator it=str.begin(); it!=str.end(); ++it
-
-    */
-
-    
-
     std::string::iterator its=key_.begin();
     
     for(int yc =0 ; yc < grid_size_; yc++){
@@ -98,6 +73,16 @@ void PlayfairCipher::setKey(const std::string& key){
 
 std::string PlayfairCipher::applyCipher(const std::string& inputText, const CipherMode cipherMode)const {
     //change j->i
+    std::string outputText = inputText;
+    auto ijfunc = [](char x){
+            if (x == 'J'){
+                return 'I';
+            } else {
+                return x;
+            }
+    };
+    std::transform(outputText.begin(), outputText.end(), outputText.begin(), ijfunc);
+    
 
     //if repeated chars in a digraph add an x or q if xx
 
@@ -113,13 +98,11 @@ std::string PlayfairCipher::applyCipher(const std::string& inputText, const Ciph
 
     //return text
     
-    
-    std::string outputtext = inputText;
     switch (cipherMode) {
         case CipherMode::Encrypt:
             break;
-    case CipherMode::Decrypt:
+        case CipherMode::Decrypt:
             break;
     }
-    return "Hello, World!";
+    return outputText;
 }

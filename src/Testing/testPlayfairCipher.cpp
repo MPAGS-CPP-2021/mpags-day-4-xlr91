@@ -39,10 +39,9 @@ TEST_CASE("Playfair Cipher set maps", "[playfair]")
 
 TEST_CASE("Playfair Cipher encryption", "[playfair]")
 {
-    //CaesarCipher cc{10};
-    //REQUIRE(cc.applyCipher("HELLOWORLD", CipherMode::Encrypt) == "ROVVYGYBVN");
+    PlayfairCipher pc{"playfair-example!@#$%^&*()"};
+    REQUIRE(pc.applyCipher("TESTIJTEST", CipherMode::Encrypt) == "TESTIITEST");
 
-    REQUIRE(true);
 }
 
 TEST_CASE("Playfair Cipher decryption", "[playfair]")
