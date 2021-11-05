@@ -42,6 +42,11 @@ class PlayfairCipher {
      */
     std::string applyCipher(const std::string& inputText, const CipherMode cipherMode) const;
 
+          /**
+     * \brief Returns the key
+     */
+    std::string returnKey() const;
+
   private:
     std::string key_{0};
 };

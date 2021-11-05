@@ -4,6 +4,16 @@
 
 #include "PlayfairCipher.hpp"
 
+TEST_CASE("Playfair Cipher set key", "[playfair]")
+{
+    //PlayfairCipher pc{"Hello World"};
+    //REQUIRE(cc.applyCipher("HELLOWORLD", CipherMode::Encrypt) == "ROVVYGYBVN");
+
+    //REQUIRE(pc.returnKey() == "Hello World");
+    REQUIRE(true);
+}
+
+
 TEST_CASE("Playfair Cipher encryption", "[playfair]")
 {
     //CaesarCipher cc{10};

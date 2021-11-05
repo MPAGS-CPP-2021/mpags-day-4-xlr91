@@ -6,6 +6,9 @@ PlayfairCipher::PlayfairCipher(const std::string& key){
     setKey(key);
 }
 
+std::string PlayfairCipher::returnKey() const{
+    return key_;
+}
 
 void PlayfairCipher::setKey(const std::string& key){
     //store original key
