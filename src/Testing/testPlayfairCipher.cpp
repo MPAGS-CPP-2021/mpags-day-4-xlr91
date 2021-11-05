@@ -8,7 +8,7 @@ TEST_CASE("Playfair Cipher set key", "[playfair]")
 {
     PlayfairCipher pc{"hello-world!@#$%^&*()"};
     //REQUIRE(cc.applyCipher("HELLOWORLD", CipherMode::Encrypt) == "ROVVYGYBVN");
-    std::string output = "HELLOWORLDABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    std::string output = "HELLOWORLDABCDEFGHIIKLMNOPQRSTUVWXYZ";
     REQUIRE(pc.returnKey() == output);
 }
 

@@ -28,6 +28,14 @@ void PlayfairCipher::setKey(const std::string& key){
     key_.erase(std::remove_if(key_.begin(), key_.end(), [](unsigned char x) {std::cout<<std::isalpha(x) << std::endl; return !std::isalpha(x);}), key_.end());
 
     //change j->i
+    auto ijfunc = [](char x){
+        if (x == 'J'){
+            return 'I';
+        } else {
+            return x;
+        }
+    };
+    std::transform(key_.begin(), key_.end(), key_.begin(), ijfunc);
 
     //remove duplicate letters
 
