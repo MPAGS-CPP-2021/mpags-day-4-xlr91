@@ -44,10 +44,13 @@ class PlayfairCipher {
      */
     std::string applyCipher(const std::string& inputText, const CipherMode cipherMode) const;
 
-          /**
+     /**
      * \brief Returns the key
      */
     std::string returnKey() const;
+         /**
+     * \brief Returns the coordinate map for testing(char:coord)
+     */
     std::map<char, std::pair<int, int>> returncoordmap() const;
     
 
@@ -55,6 +58,7 @@ class PlayfairCipher {
 
   private:
     std::string key_{0};
+    int grid_size_{5};
     std::map<std::pair<int, int>, char> coordletmap_;
     std::map<char, std::pair<int, int>> letcoordmap_;
 

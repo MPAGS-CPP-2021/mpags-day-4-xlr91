@@ -84,8 +84,8 @@ void PlayfairCipher::setKey(const std::string& key){
 
     std::string::iterator its=key_.begin();
     
-    for(int yc =0 ; yc < 5; yc++){
-        for(int xc = 0; xc< 5; xc++){
+    for(int yc =0 ; yc < grid_size_; yc++){
+        for(int xc = 0; xc< grid_size_; xc++){
             std::cout << yc << xc << std::endl;
             letcoordmap_.insert(std::make_pair(*its, std::make_pair(xc, yc)));
             coordletmap_.insert(std::make_pair(std::make_pair(xc, yc), *its));
