@@ -2,6 +2,7 @@
 
 #include <string>
 #include <algorithm>
+#include <iostream>
 
 PlayfairCipher::PlayfairCipher(const std::string& key){
     setKey(key);
@@ -23,6 +24,8 @@ void PlayfairCipher::setKey(const std::string& key){
     std::transform(key_.begin(), key_.end(), key_.begin(), ::toupper);
      
     //remove non-alpha characters
+
+    key_.erase(std::remove_if(key_.begin(), key_.end(), [](unsigned char x) {std::cout<<std::isalpha(x) << std::endl; return !std::isalpha(x);}), key_.end());
 
     //change j->i
 
