@@ -61,7 +61,7 @@ void PlayfairCipher::setKey(const std::string& key){
     
     for(int yc =0 ; yc < grid_size_; yc++){
         for(int xc = 0; xc< grid_size_; xc++){
-            std::cout << yc << xc << std::endl;
+            //std::cout << yc << xc << std::endl;
             letcoordmap_.insert(std::make_pair(*its, std::make_pair(xc, yc)));
             coordletmap_.insert(std::make_pair(std::make_pair(xc, yc), *its));
             its++;
@@ -85,7 +85,16 @@ std::string PlayfairCipher::applyCipher(const std::string& inputText, const Ciph
     
 
     //if repeated chars in a digraph add an x or q if xx
+    std::string interstring = "";
 
+    interstring += outputText.at(0);
+    for(std::string::size_type i = 1; i < outputText.length() ; i++){
+        if(outputText.at(i-1) == outputText.at(i)){
+            interstring += "X";
+        }
+        interstring += outputText.at(i);
+    }
+    outputText = interstring;
     //if size of input is odd, add trailing z
 
     //loop over inputs in digraphs
