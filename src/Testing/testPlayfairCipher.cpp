@@ -12,6 +12,30 @@ TEST_CASE("Playfair Cipher set key", "[playfair]")
     REQUIRE(pc.returnKey() == output);
 }
 
+TEST_CASE("Playfair Cipher set maps", "[playfair]")
+{
+    PlayfairCipher pc{"playfair-example!@#$%^&*()"};
+
+    auto testout1 = pc.returncoordmap().find('P');
+    REQUIRE((*testout1).first == 'P');
+    REQUIRE((*testout1).second.first == 0);
+    REQUIRE((*testout1).second.second == 0);
+
+    auto testout2 = pc.returncoordmap().find('F');
+    REQUIRE((*testout2).first == 'F');
+    REQUIRE((*testout2).second.first == 4);
+    REQUIRE((*testout2).second.second == 0);
+
+    auto testout3 = pc.returncoordmap().find('D');
+    REQUIRE((*testout3).first == 'D');
+    REQUIRE((*testout3).second.first == 2);
+    REQUIRE((*testout3).second.second == 2);
+
+    auto testout4 = pc.returncoordmap().find('Z');
+    REQUIRE((*testout4).first == 'Z');
+    REQUIRE((*testout4).second.first == 4);
+    REQUIRE((*testout4).second.second == 4);
+}
 
 TEST_CASE("Playfair Cipher encryption", "[playfair]")
 {

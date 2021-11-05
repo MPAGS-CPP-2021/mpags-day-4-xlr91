@@ -1,6 +1,5 @@
 #include "PlayfairCipher.hpp"
 
-#include <string>
 #include <algorithm>
 #include <iostream>
 
@@ -10,6 +9,10 @@ PlayfairCipher::PlayfairCipher(const std::string& key){
 
 std::string PlayfairCipher::returnKey() const{
     return key_;
+}
+
+std::map<char, std::pair<int, int>> PlayfairCipher::returncoordmap() const{
+    return letcoordmap_;
 }
 
 void PlayfairCipher::setKey(const std::string& key){
@@ -56,6 +59,39 @@ void PlayfairCipher::setKey(const std::string& key){
 
 
     //store coord of each letter
+    //map is letter : x,y coordinate
+    //pair of 2 numbers make up the coordinate from the looks of it
+
+    
+    
+    
+    /*
+    using CoordPair = std::pair<int, int>;
+
+    CoordPair c0{1, 3};
+
+    using Let2CoordMap = std::map<char, std::pair<int, int>>;
+
+    letcoordmap.insert(std::make_pair('a', c0));
+
+    for (const auto& origChar : inputText)
+
+    std::string::iterator it=str.begin(); it!=str.end(); ++it
+
+    */
+
+    
+
+    std::string::iterator its=key_.begin();
+    
+    for(int yc =0 ; yc < 5; yc++){
+        for(int xc = 0; xc< 5; xc++){
+            std::cout << yc << xc << std::endl;
+            letcoordmap_.insert(std::make_pair(*its, std::make_pair(xc, yc)));
+            coordletmap_.insert(std::make_pair(std::make_pair(xc, yc), *its));
+            its++;
+        }
+    }
 
     //store playfair cipher key map
 }

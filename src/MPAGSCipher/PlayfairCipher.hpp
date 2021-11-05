@@ -3,6 +3,7 @@
 
 #include "CipherMode.hpp"
 #include <string>
+#include <map>
 
 
 /**
@@ -14,6 +15,7 @@
  * \class PlayfairCipher
  * \brief Encrypt or decrypt text using the Playfair cipher with the given key
  */
+
 
 
 
@@ -46,9 +48,16 @@ class PlayfairCipher {
      * \brief Returns the key
      */
     std::string returnKey() const;
+    std::map<char, std::pair<int, int>> returncoordmap() const;
+    
+
+    
 
   private:
     std::string key_{0};
+    std::map<std::pair<int, int>, char> coordletmap_;
+    std::map<char, std::pair<int, int>> letcoordmap_;
+
 };
 
 #endif
