@@ -18,14 +18,15 @@ void PlayfairCipher::setKey(const std::string& key){
 
     //append alphabet
     const std::string alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    key_.append(alphabet);
+    key_ += alphabet;
 
     //make sure key is upper case
     std::transform(key_.begin(), key_.end(), key_.begin(), ::toupper);
      
     //remove non-alpha characters
 
-    key_.erase(std::remove_if(key_.begin(), key_.end(), [](unsigned char x) {std::cout<<std::isalpha(x) << std::endl; return !std::isalpha(x);}), key_.end());
+    key_.erase(std::remove_if(key_.begin(), key_.end(), 
+                [](char x) {return !std::isalpha(x);}), key_.end());
 
     //change j->i
     auto ijfunc = [](char x){
@@ -38,6 +39,21 @@ void PlayfairCipher::setKey(const std::string& key){
     std::transform(key_.begin(), key_.end(), key_.begin(), ijfunc);
 
     //remove duplicate letters
+    std::string duplicate_letters = "";
+    auto duplicate = [&](char x){
+        int dlPos = duplicate_letters.find(x);
+        if (dlPos != -1){ //found a match, delete me (set to true)
+            return true;
+        } else {
+            duplicate_letters += x;
+            return false;
+        }
+    };
+
+    key_.erase(std::remove_if(key_.begin(), key_.end(), 
+                duplicate), 
+                key_.end());
+
 
     //store coord of each letter
 
