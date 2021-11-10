@@ -90,7 +90,12 @@ std::string PlayfairCipher::applyCipher(const std::string& inputText, const Ciph
     interstring += outputText.at(0);
     for(std::string::size_type i = 1; i < outputText.length() ; i++){
         if(outputText.at(i-1) == outputText.at(i)){
-            interstring += "X";
+            if(outputText.at(i) == 'X'){
+                interstring += "Q";
+            } else{ 
+                interstring += "X";
+            }
+            
         }
         interstring += outputText.at(i);
     }

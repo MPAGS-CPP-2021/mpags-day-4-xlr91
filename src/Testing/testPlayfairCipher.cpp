@@ -40,7 +40,7 @@ TEST_CASE("Playfair Cipher set maps", "[playfair]")
 TEST_CASE("Playfair Cipher IJ", "[playfair]")
 {
     PlayfairCipher pc{"playfair-example!@#$%^&*()"};
-    REQUIRE(pc.applyCipher("TESTIJTEST", CipherMode::Encrypt) == "TESTIXITEST");
+    REQUIRE(pc.applyCipher("TESTITESTJ", CipherMode::Encrypt) == "TESTITESTI");
 
 }
 
@@ -54,8 +54,7 @@ TEST_CASE("Playfair Cipher LL", "[playfair]")
 TEST_CASE("Playfair Cipher XX", "[playfair]")
 {
     PlayfairCipher pc{"playfair-example!@#$%^&*()"};
-    REQUIRE(true);
-    //REQUIRE(pc.applyCipher("MOXXIE", CipherMode::Encrypt) == "MOXQXIE");
+    REQUIRE(pc.applyCipher("MOXXIE", CipherMode::Encrypt) == "MOXQXIE");
 
 }
 
