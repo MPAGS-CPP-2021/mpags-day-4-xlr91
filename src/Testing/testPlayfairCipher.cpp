@@ -47,17 +47,29 @@ TEST_CASE("Playfair Cipher IJ", "[playfair]")
 TEST_CASE("Playfair Cipher LL", "[playfair]")
 {
     PlayfairCipher pc{"playfair-example!@#$%^&*()"};
-    REQUIRE(pc.applyCipher("HELLOWORLD", CipherMode::Encrypt) == "HELXLOWORLD");
+    REQUIRE(pc.applyCipher("HELLOWORLDS", CipherMode::Encrypt) == "HELXLOWORLDS");
 
 }
 
 TEST_CASE("Playfair Cipher XX", "[playfair]")
 {
     PlayfairCipher pc{"playfair-example!@#$%^&*()"};
-    REQUIRE(pc.applyCipher("MOXXIE", CipherMode::Encrypt) == "MOXQXIE");
+    REQUIRE(pc.applyCipher("MOXXIES", CipherMode::Encrypt) == "MOXQXIES");
 
 }
 
+TEST_CASE("Playfair Cipher Oddness", "[playfair]")
+{
+    PlayfairCipher pc{""};
+    REQUIRE(pc.applyCipher("HELLOWORLD", CipherMode::Encrypt) == "HELXLOWORLDZ");
+}
+
+TEST_CASE("Playfair Cipher Wikipedia", "[playfair]")
+{
+    PlayfairCipher pc{"playfair example"};
+    //REQUIRE(pc.applyCipher("hide the gold in the tree stump", CipherMode::Encrypt) == "BMODZBXDNABEKUDMUIXMMOUVIF");
+    REQUIRE(true);
+}
 
 TEST_CASE("Playfair Cipher decryption", "[playfair]")
 {
