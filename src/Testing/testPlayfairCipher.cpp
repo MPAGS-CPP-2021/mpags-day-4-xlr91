@@ -37,44 +37,75 @@ TEST_CASE("Playfair Cipher set maps", "[playfair]")
     REQUIRE((*testout4).second.second == 4);
 }
 
-TEST_CASE("Playfair Cipher IJ", "[playfair]")
-{
-    PlayfairCipher pc{"playfair-example!@#$%^&*()"};
-    REQUIRE(pc.applyCipher("TESTITESTJ", CipherMode::Encrypt) == "TESTITESTI");
 
-}
 
-TEST_CASE("Playfair Cipher LL", "[playfair]")
-{
-    PlayfairCipher pc{"playfair-example!@#$%^&*()"};
-    REQUIRE(pc.applyCipher("HELLOWORLDS", CipherMode::Encrypt) == "HELXLOWORLDS");
+//remnants of the test cases used before the encryption actally works, testing out 
+//individual IJ, LL, XX, etc
+//unsure on how to access those individual blocks of code to properly implement this
+/*
 
-}
+    TEST_CASE("Playfair Cipher IJ", "[playfair]")
+    {
+        PlayfairCipher pc{"playfair-example!@#$%^&*()"};
+        REQUIRE(pc.applyCipher("TESTITESTJ", CipherMode::Encrypt) == "TESTITESTI");
 
-TEST_CASE("Playfair Cipher XX", "[playfair]")
-{
-    PlayfairCipher pc{"playfair-example!@#$%^&*()"};
-    REQUIRE(pc.applyCipher("MOXXIES", CipherMode::Encrypt) == "MOXQXIES");
+    }
 
-}
+    TEST_CASE("Playfair Cipher LL", "[playfair]")
+    {
+        PlayfairCipher pc{"playfair-example!@#$%^&*()"};
+        REQUIRE(pc.applyCipher("HELLOWORLDS", CipherMode::Encrypt) == "HELXLOWORLDS");
 
-TEST_CASE("Playfair Cipher Oddness", "[playfair]")
-{
-    PlayfairCipher pc{""};
-    REQUIRE(pc.applyCipher("HELLOWORLD", CipherMode::Encrypt) == "HELXLOWORLDZ");
-}
+    }
 
-TEST_CASE("Playfair Cipher Wikipedia", "[playfair]")
+    TEST_CASE("Playfair Cipher XX", "[playfair]")
+    {
+        PlayfairCipher pc{"playfair-example!@#$%^&*()"};
+        REQUIRE(pc.applyCipher("MOXXIES", CipherMode::Encrypt) == "MOXQXIES");
+
+    }
+
+    TEST_CASE("Playfair Cipher Oddness", "[playfair]")
+    {
+        PlayfairCipher pc{""};
+        REQUIRE(pc.applyCipher("HELLOWORLD", CipherMode::Encrypt) == "HELXLOWORLDZ");
+    }
+
+    TEST_CASE("Playfair Cipher Wikipedia", "[playfair]")
+    {
+        PlayfairCipher pc{"playfair example"};
+        //REQUIRE(pc.applyCipher("hide the gold in the tree stump", CipherMode::Encrypt) == "BMODZBXDNABEKUDMUIXMMOUVIF");
+        REQUIRE(true);
+    }
+
+*/
+
+TEST_CASE("Playfair Cipher Wikipedia Encryption", "[playfair]")
 {
     PlayfairCipher pc{"playfair example"};
-    //REQUIRE(pc.applyCipher("hide the gold in the tree stump", CipherMode::Encrypt) == "BMODZBXDNABEKUDMUIXMMOUVIF");
+    REQUIRE(pc.applyCipher("HIDETHEGOLDINTHETREESTUMP", CipherMode::Encrypt) == "BMODZBXDNABEKUDMUIXMMOUVIF");
+    //REQUIRE(true);
+}
+
+TEST_CASE("Playfair Cipher Wikipedia decryption", "[playfair]")
+{
+    PlayfairCipher pc{"playfair example"};
+    REQUIRE(pc.applyCipher("BMODZBXDNABEKUDMUIXMMOUVIF", CipherMode::Decrypt) == "HIDETHEGOLDINTHETREXESTUMP");                                                                            
+
     REQUIRE(true);
 }
 
-TEST_CASE("Playfair Cipher decryption", "[playfair]")
+TEST_CASE("Playfair Cipher GeeksforGeeks Encryption", "[playfair]")
 {
-    //CaesarCipher cc{10};
-    //REQUIRE(cc.applyCipher("ROVVYGYBVN", CipherMode::Decrypt) == "HELLOWORLD");
+    PlayfairCipher pc{"MONARCHY"};
+    //REQUIRE(true);
+    REQUIRE(pc.applyCipher("INSTRUMENTS", CipherMode::Encrypt) == "GATLMZCLRQTX");
+}
+
+TEST_CASE("Playfair Cipher GeeksforGeeks Decryption", "[playfair]")
+{
+    PlayfairCipher pc{"MONARCHY"};
+    REQUIRE(pc.applyCipher("GATLMZCLRQTX", CipherMode::Decrypt) == "INSTRUMENTSZ");
 
     REQUIRE(true);
 }
