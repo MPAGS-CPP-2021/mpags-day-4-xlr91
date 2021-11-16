@@ -85,7 +85,6 @@ std::string PlayfairCipher::applyCipher(const std::string& inputText,
     std::string interstring = "";
 
     std::string outputText = inputText;
-    std::string TESTOUTPUT{""};    //FOR TESTING ONLY, DELETE THIS
     auto ijfunc = [](char x) {
         if (x == 'J') {
             return 'I';
@@ -94,6 +93,8 @@ std::string PlayfairCipher::applyCipher(const std::string& inputText,
         }
     };
 
+
+    //applying encryption cipher rules for the incoming encryption text
     switch (cipherMode) {
         case CipherMode::Encrypt:
 
@@ -101,13 +102,13 @@ std::string PlayfairCipher::applyCipher(const std::string& inputText,
                            outputText.begin(), ijfunc);
 
             //if repeated chars in a digraph add an x or q if xx
-
+            
+            //this bit of code could surely be done using an algorithm
+            //thinking of using the adjacent_find alg to find any occurences of double chars
+            //and then use something like the insert iterator to stick it in
+            //unsure how to proceed with iterators so for now going use standard for loops etc
+            //also time constraints
             interstring += outputText.at(0);
-
-            //switch to using a string iterator
-
-            //use back insert thing
-            //std::transform(key_.begin(), key_.end(), key_.begin(), ijfunc); but with back insert and ijfunc is something that switches it in the for loop like thing
             for (std::string::size_type i = 1; i < outputText.length(); i++) {
                 if (outputText.at(i - 1) == outputText.at(i)) {
                     if (outputText.at(i) == 'X') {
@@ -117,11 +118,8 @@ std::string PlayfairCipher::applyCipher(const std::string& inputText,
                     }
                 }
                 interstring += outputText.at(i);
-            }
-            outputText =
-                interstring;    //can replace this somehow so we dont need to deal with interstring
-
-            //if size of input is odd, add trailing z
+            }            
+            outputText = interstring;    //can replace this somehow so we dont need to deal with interstring
 
             if (outputText.length() % 2 != 0) {
                 outputText += "Z";
@@ -133,6 +131,8 @@ std::string PlayfairCipher::applyCipher(const std::string& inputText,
             break;
     }
 
+
+    // use text to find coordinate, apply rules, and return the letter
     auto charToCoordsIter0 = letcoordmap_.find('A');
     auto charToCoordsIter1 = letcoordmap_.find('B');
     auto coordsToCharIter0 = coordletmap_.find(std::make_pair(0, 0));
@@ -196,43 +196,15 @@ std::string PlayfairCipher::applyCipher(const std::string& inputText,
 
         coordsToCharIter0 = coordletmap_.find(std::make_pair(x0f, y0f));
         coordsToCharIter1 = coordletmap_.find(std::make_pair(x1f, y1f));
-
-        std::cout << x0 << y0 << x1 << y1 << std::endl;
-        std::cout << x0f << y0f << x1f << y1f << std::endl;
-
-        std::cout << (*coordsToCharIter0).second << (*coordsToCharIter1).second
-                  << std::endl;
-
+        
+        //it might also be possible to use iterators/algs to transform the string
+        //but this works, and time constraints
         interstring += (*coordsToCharIter0).second;
         interstring += (*coordsToCharIter1).second;
-
-        //(*charToCoordsIter).second.first and (*charToCoordsIter).second.second are the useful things
-
-        //TESTOUTPUT += std::to_string((*charToCoordsIter).second.first);
-        //TESTOUTPUT += (*charToCoordsIter).first;
-        //charToCoordsIter = letcoordmap_.find(outputText.at(i+1));
-        //TESTOUTPUT += (*charToCoordsIter).first;
-        //TESTOUTPUT += std::to_string((*charToCoordsIter).second.first);
     }
+    
+    
     outputText = interstring;
-
-    //  find the corods in grid of each digraph
-
-    // appl rules to get new corod
-
-    //find letter associated
-
-    //return text
-
-    /*
-    switch (cipherMode) {
-        case CipherMode::Encrypt:
-            break;
-        case CipherMode::Decrypt:
-            break;
-    }
-
-    */
 
     return outputText;
 }

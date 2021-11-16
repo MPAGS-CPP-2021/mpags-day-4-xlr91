@@ -69,5 +69,10 @@ std::string CaesarCipher::applyCipher(const std::string& inputText,
         outputText += processedChar;
     }
 
+
+    //it is also technically possible to clean up the decrypted text, eg remove the last Z in the string
+    //or to detect *X* or XQX and remove that as well
+    //this is not implemented however
+
     return outputText;
 }
