@@ -38,3 +38,7 @@
 *.exe
 *.out
 *.app
+
+#personal docs and vscode stuff
+docs/*
+.vscode/*
